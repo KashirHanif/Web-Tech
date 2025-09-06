@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      image .logo {
+        width: 40px;
+        height: 40px;
+      }
+      .nav-bar {
+        display: flex;
+        align-items: center;
+        height: 70px;
+        padding: 10px;
+        margin: 5px;
+        background-color: black;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        margin-left: auto;
+      }
+      .nav-links li {
+        margin-right: 30px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+     .nav-links li a {
+            text-decoration: none;
+            color: lightgrey;
+    }
+      .nav-links li a:hover,
+      .nav-links li a.active {
+        color: white;
+      }
+    </style>
+    <div class="nav-bar">
+      <img class="logo" src="images/logo.png" />
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a>AGENCY</a></li>
+        <li><a>PROJECTS</a></li>
+        <li><a>SOLUTIONS</a></li>
+        <li><a>CONTACT</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
