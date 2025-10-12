@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery.js"></script>
+</head>
+<body>
+  <div class="main-container">
+    <h1>Product Management</h1>
+
+    <form id="productForm" >
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Enter product title">
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text" id="price" placeholder="Enter price">
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" id="category" placeholder="Enter category">
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="text" id="image" placeholder="Enter image Url">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Enter short description"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="saveBtn" class="btn btn-primary">Add Product</button>
+        <button type="reset" class="btn btn-reset">Clear</button>
+      </div>
+    </form>
+
+    <div class="product-list" id="productList">
+      <h2>Products</h2>
+  </div>
+</body>
+</html>
