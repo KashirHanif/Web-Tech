@@ -1,159 +1,17 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body {
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  padding: 2rem;
-}
-
-.main-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.main-container h1 {
-  text-align: center;
-  color: #222;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
-
-.form-group {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-input,
-textarea {
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-input:focus,
-textarea:focus {
-  border-color: #4a5cf0;
-  box-shadow: 0 0 5px rgba(74, 92, 240, 0.4);
-  outline: none;
-}
-
-textarea {
-  resize: none;
-  height: 80px;
-}
-
-.form-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.btn {
-  padding: 0.6rem 1.4rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.btn-primary {
-  background-color: #4a5cf0;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #3c4ad1;
-}
-
-.btn-reset {
-  background-color: #e2e6ec;
-  color: #333;
-}
-
-.btn-reset:hover {
-  background-color: #d4d7dc;
-}
-
-.product-list {
-  margin-top: 2rem;
-}
-
-.product-list h2 {
-  margin-bottom: 1rem;
-  color: #222;
-}
-
-.placeholder {
-  color: #888;
-  font-style: italic;
-}
-
-
-.product-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  background: #fff;
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-}
-
-.product-card img {
+.product-image {
   width: 120px;
   height: 120px;
   object-fit: contain;
   background: #fafafa;
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px;
 }
 
-
-
-.product-card h4 {
-  margin: 4px 0;
-  font-size: 15px;
-  color: #444;
-}
-
-.product-card .btn {
-  display: block;
-  width: 85px;
-  margin: 6px 0;
-  padding: 8px 0;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color .2s ease;
-}
-
-.btn-edit:hover {
-  background-color: rgb(77, 134, 77);
-  color:white;
-}
-.btn-delete:hover {
-  background-color: red;
-  color:white;
+.placeholder {
+  color: #888;
+  font-style: italic;
 }

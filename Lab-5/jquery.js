@@ -14,30 +14,39 @@ function renderProducts(list) {
   productList.empty();
 
   if (!list || list.length === 0) {
-    productList.append("<p class='placeholder'>No products yet. Add one above!</p>");
+    productList.append("<p>No products found. Add one above.</p>");
     return;
   }
 
-  for (const product of list) {
+  for (const p of list) {
     const card = `
-      <div class="product-card">
-        <div>
-          <img height="60" width="100" src="${product.image}" />
-          <h4>Title: ${product.title}</h4>
-          <h4>Price: $${product.price}</h4>
-          <h4>Category: ${product.category}</h4>
-          <h4>Description: ${product.description}</h4>
+      <div class="border rounded p-3 mb-3">
+        <div class="d-flex">
+          <img src="${p.image}" class="product-image">
+    
+          <div class="flex-grow-1">
+            <h5 class="mb-1">${p.title}</h5>
+            <p class="mb-1"><strong>Price:</strong> $${p.price}</p>
+            <p class="mb-1"><strong>Category:</strong> ${p.category}</p>
+            <p class="mb-0"><strong>Description:</strong> ${p.description}</p>
+          </div>
+          
+          <div class="ms-2">
+            <button class="btn btn-sm btn-success mb-2 btn-edit" data-id="${p.id}">Edit</button>
+            <button class="btn btn-sm btn-danger btn-delete" data-id="${p.id}">Delete</button>
+          </div>
         </div>
-        <div>
-          <button class="btn btn-edit" data-id="${product.id}">Edit</button>
-          <button class="btn btn-delete" data-id="${product.id}">Delete</button>
-        </div>
-      </div>`;
+      </div>
+    `;
+
     productList.append(card);
   }
 }
 
 function getProducts() {
+  const productList = $("#productList");
+  productList.html("<h2 class='mb-3'>Products</h2><p>Loading...</p>");
+
   $.ajax({
     url: "https://fakestoreapi.com/products",
     method: "GET",
@@ -45,11 +54,13 @@ function getProducts() {
       allProducts = data;
       renderProducts(allProducts);
     },
-    error: function () {
+    error: () => {
+      productList.html("<h2 class='mb-3'>Products</h2><p class='text-danger'>Failed to load products.</p>");
       console.log("Error fetching products");
-    },
+    }
   });
 }
+
 
 function addOrUpdateProduct() {
   const title = $("#title").val();
@@ -64,7 +75,6 @@ function addOrUpdateProduct() {
   }
 
   if (editMode) {
-    // UPDATE (local + fake PUT)
     const idNum = Number(editProductId);
     const updated = { id: idNum, title, price: parseFloat(price), category, description, image };
 
@@ -72,52 +82,34 @@ function addOrUpdateProduct() {
       url: `https://fakestoreapi.com/products/${idNum}`,
       method: "PUT",
       data: JSON.stringify(updated),
-      contentType: "application/json",       
-      success: function (resp) {
-        console.log("Response of updating product:", resp); // often {id: 1} from FakeStore
-
+      contentType: "application/json",
+      success: () => {
         const idx = allProducts.findIndex(p => p.id === idNum);
-        if (idx !== -1) allProducts[idx] = updated;        
-        renderProducts(allProducts);                       
-
-        alert("Product updated successfully!");
+        if (idx !== -1) allProducts[idx] = updated;
+        renderProducts(allProducts);
+        alert("Product updated!");
         $("#productForm")[0].reset();
         $("#saveBtn").text("Add Product");
         editMode = false;
         editProductId = null;
-      },
-      error: function () {
-        alert("Error updating product!");
       }
     });
     return;
   }
 
-
   const maxId = allProducts.length ? Math.max(...allProducts.map(p => p.id)) : 0;
-  const newProduct = {
-    id: maxId + 1,
-    title,
-    price: parseFloat(price),
-    category,
-    description,
-    image
-  };
+  const newProduct = { id: maxId + 1, title, price: parseFloat(price), category, description, image };
 
   $.ajax({
     url: "https://fakestoreapi.com/products",
     method: "POST",
     data: JSON.stringify(newProduct),
     contentType: "application/json",
-    success: function (resp) {
-      console.log("Response of adding product:", resp);
-      allProducts.push(newProduct);       // keep local state
-      renderProducts(allProducts);        // refresh UI
-      alert("Product added successfully!");
+    success: () => {
+      allProducts.push(newProduct);
+      renderProducts(allProducts);
+      alert("Product added!");
       $("#productForm")[0].reset();
-    },
-    error: function () {
-      alert("Error adding product!");
     }
   });
 }
@@ -139,18 +131,20 @@ function editProduct() {
 }
 
 function deleteProduct() {
-    let productId = Number($(this).attr("data-id"));
-    $.ajax({
-        url:`https://fakestoreapi.com/products//${productId}`,
-        method: "DELETE",
-        success: function(response) {
-           allProducts = allProducts.filter(p => p.id !== productId);
-           renderProducts(allProducts);
-           alert("Product deleted successfully!");
-           console.log("Response of deleting product:", response);
-        },
-        error: function() {
-            console.log("Error deleting product");
-        }
-    })
+  const productId = Number($(this).attr("data-id"));
+
+  const confirmDelete = confirm("Are you sure you want to delete this product?");
+  if (!confirmDelete) return;
+
+  $.ajax({
+    url: `https://fakestoreapi.com/products/${productId}`,
+    method: "DELETE",
+    success: () => {
+      allProducts = allProducts.filter(p => p.id !== productId);
+      renderProducts(allProducts);
+      alert("Product deleted!");
+    },
+    error: () => alert("Error deleting product")
+  });
 }
+
