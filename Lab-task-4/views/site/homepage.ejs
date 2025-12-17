@@ -1,0 +1,88 @@
+<div class="hero-section">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+
+    <h1 class="hero-title">
+      Welcome to Awesome Shop
+    </h1>
+
+    <p class="hero-subtitle">
+      Discover premium products, top deals, and the latest trends - all in one place.
+      Shop with comfort, style, and confidence.
+    </p>
+      <a href="/1" class="hero-btn">Shop Now</a>
+  </div>
+</div>
+
+
+<div class="category-tabs">
+  <a 
+    class="category-tab <%= !activeCategory ? 'active' : '' %>" 
+    href="/"
+  >
+    All
+  </a>
+  <% categories.forEach(cat => { %>
+    <a 
+      class="category-tab <%= activeCategory === cat.slug ? 'active' : '' %>" 
+      href="/category/<%= cat.slug %>"  >
+      <%= cat.name %>
+    </a>
+  <% }) %>
+</div>
+
+<h1 class="products-heading"><%= pagetitle %></h1>
+<p class="products-subheading">
+  Showing page <%= page %> of <%= totalPages %>
+</p>
+
+<div class="products-grid">
+
+  <% products.forEach(p => { %>
+
+    <div class="product-card">
+
+      <img 
+        src="/images/uploaded/<%= p.image %>" 
+        alt="<%= p.name %>"
+        class="product-image"
+      />
+
+      <h3 class="product-name"><%= p.name %></h3>
+      <p class="product-description">
+        <%= p.description.substring(0,80) %>...
+      </p>
+
+      <p class="product-meta"><strong>Price:</strong> <%= p.price %></p>
+      <p class="product-meta"><strong>Color:</strong> <%= p.color %></p>
+      <p class="product-meta"><strong>Department:</strong> <%= p.department %></p>
+
+      <a href="/add-cart/<%= p._id %>" 
+        class="product-add-btn">
+        Add To Cart
+      </a>
+    </div>
+
+  <% }) %>
+</div>
+
+<div class="pagination-bar">
+  <a href="/<%= page - 1 %>"
+     class="pagination-btn <%= page === 1 ? 'disabled' : '' %>">
+    Previous
+  </a>
+
+  <% for(let i = 1; i <= totalPages; i++) { %>
+    <a href="/<%= i %>"
+       class="page-number <%= i === page ? 'active' : '' %>">
+      <%= i %>
+    </a>
+  <% } %>
+  <a href="/<%= page + 1 %>"
+     class="pagination-btn <%= page === totalPages ? 'disabled' : '' %>">
+    Next
+  </a>
+
+</div>

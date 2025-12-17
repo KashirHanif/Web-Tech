@@ -1,0 +1,24 @@
+<nav class="main-nav">
+  <a href="/" class="nav-logo"> Awesome Shop </a>
+
+  <div class="nav-links">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/contact-us" class="nav-link">Contact Us</a>
+    <a href="/cart" class="nav-link">Shopping Cart</a>
+    <a href="/my-orders" class="nav-link">My Orders</a>
+    <a href="/my-account" class="nav-link">My Account</a>
+    <a href="/super-admin" class="nav-link">Super Admin</a>
+
+    <% if(!user) { %>
+
+    <a href="/register" class="nav-auth-btn register"> Register </a>
+
+    <a href="/login" class="nav-auth-btn login"> Login </a>
+
+    <% } else { %>
+
+    <a href="/logout" class="nav-auth-btn logout"> Logout </a>
+
+    <% } %>
+  </div>
+</nav>

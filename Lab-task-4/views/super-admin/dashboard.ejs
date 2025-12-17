@@ -1,0 +1,94 @@
+<h2 class="dashboard-title">Super Admin Dashboard</h2>
+<div class="dash-container">
+  <div class="dash-card card-blue">
+    <h4>Total Products</h4>
+    <p><%= totalProducts %></p>
+  </div>
+
+  <div class="dash-card card-green">
+    <h4>Total Categories</h4>
+    <p><%= totalCategories %></p>
+  </div>
+
+  <div class="dash-card card-orange">
+    <h4>Total Users</h4>
+    <p><%= totalUsers %></p>
+  </div>
+</div>
+
+<div class="orders-title">Customer Orders</div>
+
+<div class="orders-flex-wrapper">
+
+  <% if (orders.length === 0) { %>
+
+    <div class="no-orders-msg">
+      No orders available
+    </div>
+
+  <% } else { orders.forEach(order => { %>
+
+    <div class="order-card-flex">
+
+      <div class="order-block">
+        <div class="order-id">Order #<%= order._id %></div>
+        <div class="order-date"><%= order.createdAt.toDateString() %></div>
+      </div>
+
+      <div class="order-block">
+        <div class="order-user"><strong>User:</strong> <%= order.userId?.name %></div>
+        <div class="order-email"><%= order.userId?.email %></div>
+      </div>
+
+      <div class="order-block">
+        <div><strong>Total:</strong> $<%= order.totalAmount %></div>
+      </div>
+
+      <form action="/super-admin/update-status/<%= order._id %>" method="POST" class="order-status-form">
+        <select name="status" class="order-status-dropdown">
+          <option value="Processing" <%= order.status === "Processing" ? "selected" : "" %>>Processing</option>
+          <option value="Shipped" <%= order.status === "Shipped" ? "selected" : "" %>>Shipped</option>
+          <option value="Delivered" <%= order.status === "Delivered" ? "selected" : "" %>>Delivered</option>
+          <option value="Cancelled" <%= order.status === "Cancelled" ? "selected" : "" %>>Cancelled</option>
+        </select>
+
+        <button type="submit" class="order-update-btn">Update</button>
+      </form>
+
+    </div>
+
+  <% }) } %>
+</div>
+
+
+<div class="complaints-title">User Complaints</div>
+<div class="complaints-section">
+  <% if (complaints.length === 0) { %>
+      <div class="no-complaints-wrapper">
+        No unresolved complaints
+      </div>
+  <% } else { %>
+
+  <div class="complaints-grid">
+    <% complaints.forEach(c => { %>
+
+      <div class="complaint-card">
+        <div>
+          <div class="complaint-name"><%= c.name %></div>
+          <div class="complaint-email"><%= c.email %></div>
+          <div class="complaint-message"><%= c.message %></div>
+        </div>
+
+        <a 
+          href="/super-admin/contact/resolve/<%= c._id %>"
+          class="resolve-btn"
+        >
+          Resolve
+        </a>
+      </div>
+
+    <% }) %>
+  </div>
+
+  <% } %>
+</div>
