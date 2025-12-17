@@ -1,0 +1,76 @@
+<div class="contact-card">
+  
+  <h1 
+    class="contact-title"
+  >
+    Contact Us
+  </h1>
+
+  <p 
+    class="contact-subtitle"
+  >
+    Send us a message and our support team will get back to you!
+  </p>
+
+
+  <form action="/submit-message" method="POST">
+    <div class="contact-form-group">
+      <label
+        class="contact-label"
+      >
+        Your Name
+      </label>
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Kashir Hanif"
+        required
+        class="contact-input"
+      />
+    </div>
+
+
+    <div class="contact-form-group">
+      <label
+        class="contact-label"
+      >
+        Your Email
+      </label>
+
+      <input
+        type="email"
+        name="email"
+        placeholder="you@gmail.com"
+        required
+        class="contact-input"
+      />
+    </div>
+
+
+    <div class="contact-form-group message">
+      <label
+        class="contact-label"
+      >
+        Message
+      </label>
+
+      <textarea
+        name="message"
+        placeholder="Write your message..."
+        rows="4"
+        required
+        class="contact-textarea"
+      ></textarea>
+    </div>
+
+
+    <button
+      type="submit"
+      class="contact-submit"
+    >
+      Send Message
+    </button>
+
+  </form>
+</div>

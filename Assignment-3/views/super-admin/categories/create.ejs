@@ -1,0 +1,33 @@
+<div class="category-wrapper">
+
+  <h2 class="category-title">Create New Category</h2>
+
+  <form action="/super-admin/categories/create" method="POST">
+
+    <label class="category-label">Category Name</label>
+    <input 
+      type="text"
+      name="name"
+      class="category-input"
+      placeholder="e.g. Electronics, Fashion, Kids, Shoes..."
+      required
+    >
+
+    <br><br>
+
+    <label class="category-label">Short Description</label>
+    <textarea 
+      name="description" 
+      class="category-textarea"
+      rows="3"
+      placeholder="Write a short description about this category..."
+    ></textarea>
+
+    <div class="btn-row">
+      <button class="btn-green">Create Category</button>
+      <a href="/super-admin/categories" class="btn-gray">Cancel</a>
+    </div>
+
+  </form>
+
+</div>

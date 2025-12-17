@@ -1,0 +1,68 @@
+<div class="container mt-4 category-list-container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="category-heading">All Categories</h2>
+    <a
+      href="/super-admin/categories/create"
+      class="btn btn-primary category-add-btn"
+    >
+      Add New Category
+    </a>
+  </div>
+
+  <div class="category-table-wrapper">
+    <table class="table category-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Slug</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% categories.forEach(cat => { %>
+        <tr>
+
+          <td class="table-strong">
+            <%= cat.name %>
+          </td>
+
+          <td>
+            <span
+              class="category-slug"
+            >
+              <%= cat.slug %>
+            </span>
+          </td>
+
+          <td class="category-description">
+            <%= cat.description %>
+          </td>
+
+          <td class="action-wrapper">
+
+            <a
+              href="/super-admin/categories/edit/<%= cat._id %>"
+              class="action-btn btn-edit"
+            >
+              Edit
+            </a>
+
+            <a
+              href="/super-admin/categories/delete/<%= cat._id %>"
+              onclick="return confirm('Delete this category?')"
+              class="action-btn btn-delete"
+            >
+              Delete
+            </a>
+
+          </td>
+
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

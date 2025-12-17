@@ -1,0 +1,87 @@
+<div class="cart-wrapper">
+
+  <div class="cart-header">
+    <h2 class="cart-title">
+      Shopping Cart
+    </h2>
+
+    <a 
+      href="/cart/clear"
+      class="cart-clear"
+    >
+      Clear Cart
+    </a>
+  </div>
+
+  <hr class="cart-divider" />
+
+  <% if (products.length === 0) { %>
+
+    <p class="cart-empty">Your cart is empty.</p>
+
+    <a 
+      href="/" 
+      class="cart-continue"
+    >Continue Shopping</a>
+
+  <% } else { %>
+  
+
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% products.forEach(product => { %>
+          <tr>
+            <td><%=product.name%></td>
+            <td>$<%=product.price%></td>
+            <td>
+              <a 
+                href="/cart/remove/<%=product._id%>"
+                class="cart-remove"
+              >
+                Remove
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <div class="cart-total">
+      Total: $<%= total %>
+    </div>
+
+    <div class="cart-actions">
+      <a 
+        href="/" 
+        class="cart-continue"
+      >
+        Continue Shopping
+      </a>
+
+       <a href="#" class="cart-checkout" onclick="checkoutOrder(event)">
+        Checkout
+      </a>
+    </div>
+
+  <% } %>
+<form id="placeOrderForm" action="/place-order" method="POST" style="display:none;"></form>
+
+</div>
+
+<script>
+  function checkoutOrder(e) {
+    e.preventDefault();
+
+    if (confirm("Do you want to confirm payment and place the order?")) {
+      document.getElementById("placeOrderForm").submit();
+    }
+  }
+</script>

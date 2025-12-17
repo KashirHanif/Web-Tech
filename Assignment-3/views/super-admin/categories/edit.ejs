@@ -1,0 +1,32 @@
+<div class="category-wrapper">
+
+  <h2 class="category-title">Edit Category</h2>
+
+  <form action="/super-admin/categories/edit/<%= category._id %>" method="POST">
+
+    <label class="category-label">Category Name</label>
+    <input 
+      type="text"
+      name="name"
+      class="category-input"
+      value="<%= category.name %>"
+      required
+    >
+
+    <br><br>
+
+    <label class="category-label">Short Description</label>
+    <textarea 
+      name="description"
+      class="category-textarea"
+      rows="3"
+      placeholder="Write a short description..."
+    ><%= category.description %></textarea>
+
+    <div class="btn-row tight">
+      <button class="btn-blue">Update</button>
+      <a href="/super-admin/categories" class="btn-gray">Cancel</a>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,67 @@
+<div class="product-container">
+
+  <div class="product-header">
+    <h2 class="product-title">All Products</h2>
+
+    <a href="/super-admin/products/create" class="btn-create">
+      Create New Product
+    </a>
+  </div>
+
+  <div class="product-table-wrapper">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Color</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th width="160">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% products.forEach(product => { %>
+        <tr>
+
+          <td>
+            <% if (product.image) { %>
+              <img src="/images/uploaded/<%= product.image %>" 
+                   class="product-img" />
+            <% } else { %>
+              <span class="product-na">N/A</span>
+            <% } %>
+          </td>
+
+          <td class="table-strong"><%= product.name %></td>
+          <td><%= product.department %></td>
+          <td><%= product.color %></td>
+          <td>$<%= product.price %></td>
+          <td class="product-description">
+            <%= product.description.substring(0,70) %>...
+          </td>
+
+          <td>
+            <div class="action-wrapper">
+              <a href="/super-admin/products/edit/<%= product._id %>" 
+                 class="action-btn btn-edit">
+                 Edit
+              </a>
+
+              <a href="/super-admin/products/delete/<%= product._id %>" 
+                 class="action-btn btn-delete"
+                 onclick="return confirm('Delete this product?')">
+                 Delete
+              </a>
+            </div>
+          </td>
+
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="form-container">
+
+  <h2 class="form-title">Create New Product</h2>
+
+  <div class="form-card">
+    <form action="/super-admin/products/create" method="POST" enctype="multipart/form-data">
+
+      <div class="form-group">
+        <label class="form-label">Product Name</label>
+        <input type="text" name="name" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Price</label>
+        <input type="text" name="price" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Color</label>
+        <input type="text" name="color" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Department</label>
+        <input type="text" name="department" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea name="description" rows="3" class="form-textarea"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Product Image</label>
+        <input type="file" name="image" class="form-input" accept="image/*">
+      </div>
+
+      <button type="submit" class="submit-btn">Create Product</button>
+    </form>
+  </div>
+
+</div>
