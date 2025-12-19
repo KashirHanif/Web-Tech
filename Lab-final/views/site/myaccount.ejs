@@ -1,0 +1,68 @@
+<div 
+  class="account-wrapper"
+>
+  <div class="account-header">
+    <h2 
+      class="account-title"
+    >
+      My Account
+    </h2>
+    <p class="account-subtitle">
+      Manage your information, orders and account settings.
+    </p>
+  </div>
+
+  <div class="account-card">
+    <h3 
+      class="account-name"
+    >
+      <%= user.name %>
+    </h3>
+
+    <p class="account-detail">
+      <strong>Email:</strong> <%= user.email %>
+    </p>
+
+    <p class="account-detail">
+      <strong>Role:</strong>
+      <%= user.roles && user.roles.length ? user.roles.join(", ") : "Customer" %>
+    </p>
+  </div>
+
+  <div
+    class="account-grid"
+  >
+    <a
+      href="/my-orders"
+      class="account-link"
+    >
+      <div class="account-link-title">My Orders</div>
+      <div class="account-link-subtitle">Track and manage your orders</div>
+    </a>
+
+    <a
+      href="/edit-profile"
+      class="account-link"
+    >
+      <div class="account-link-title">Edit Profile</div>
+      <div class="account-link-subtitle">Update your information</div>
+    </a>
+
+    <a
+      href="/cart"
+      class="account-link"
+    >
+      <div class="account-link-title">Shopping Cart</div>
+      <div class="account-link-subtitle">View your added items</div>
+    </a>
+
+    <a
+      href="/logout"
+      class="account-link logout"
+    >
+      <div class="account-link-title">Logout</div>
+      <div class="account-link-subtitle">Sign out of your account</div>
+    </a>
+  </div>
+
+</div>

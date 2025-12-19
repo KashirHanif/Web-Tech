@@ -1,0 +1,68 @@
+<div class="edit-container">
+
+  <h2 class="edit-title">Edit Product</h2>
+
+  <div class="edit-card">
+
+    <form action="/super-admin/products/edit/<%= product._id %>" 
+          method="POST" 
+          enctype="multipart/form-data">
+
+      <div class="form-group">
+        <label class="form-label">Product Name</label>
+        <input type="text" name="name" class="form-input" value="<%= product.name %>" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Price</label>
+        <input type="text" name="price" class="form-input" value="<%= product.price %>" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Color</label>
+        <input type="text" name="color" class="form-input" value="<%= product.color %>">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Department</label>
+        <input type="text" name="department" class="form-input" value="<%= product.department %>">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea name="description" rows="3" class="form-textarea"><%= product.description %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Current Image</label>
+
+        <% if (product.image) { %>
+          <img 
+            src="/images/uploaded/<%= product.image %>" 
+            class="image-preview"
+          >
+        <% } else { %>
+          <p class="no-image-text">No image uploaded.</p>
+        <% } %>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Change Image</label>
+        <input type="file" name="image" class="form-input" accept="image/*">
+      </div>
+
+      <div class="button-row">
+        <button type="submit" class="btn-primary-custom">
+          Update Product
+        </button>
+
+        <a href="/super-admin/products" class="btn-secondary-custom">
+          Cancel
+        </a>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
